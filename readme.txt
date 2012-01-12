@@ -10,6 +10,7 @@ This plugin adds all default post statuses to the "Posts" administration submenu
 == Description ==
 
 Adds the following post statuses to the "Posts" administration submenu:
+
 * Drafts
 * Pending
 * Scheduled
