@@ -46,3 +46,17 @@ Let me know if that would be useful or if you have other ideas for features.
 
 = 0.1 =
 * First release.
+
+== Project Roadmap ==
+
+= 0.3 =
+* Display number of posts after each status.
+* Hide post statuses with 0 posts.
+
+= 0.4 =
+* Support Pages
+* Make both Path and Post items option with options on "Writing" settings.
+
+= 0.5 =
+* Support Custom Post types.
+* Support Custom Statuses (are custom post statuses possible?)
