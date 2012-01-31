@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: mrwweb
-Tags: post status, admin menu
+Tags: post status, admin menu, admin, administration, cms, scheduled, drafts
 Requires at least: unknown
 Tested up to: 3.3.1
 Stable tag: 0.2
