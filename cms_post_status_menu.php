@@ -3,7 +3,7 @@
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links to the Posts admin submenu.
-Version: 0.3
+Version: 1.0
 Author: Mark Root-Wiley aka MRWweb
 Author URI: http://mrwweb.com
 */
