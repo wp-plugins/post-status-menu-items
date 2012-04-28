@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management
 Requires at least: unknown
 Tested up to: 3.3.1
-Stable tag: 0.3
+Stable tag: 1.0
 
 This plugin adds the post statuses—such as "Draft"—to Page, Post, and Custom Post Type admin menus.
 
