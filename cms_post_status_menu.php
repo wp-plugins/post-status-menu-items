@@ -2,13 +2,13 @@
 /*
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
-Description: Adds post status links to the Posts admin submenu.
-Version: 1.0
+Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
+Version: 1.0.1
 Author: Mark Root-Wiley aka MRWweb
 Author URI: http://mrwweb.com
 */
 
-// Big thanks to http://wordpress.stackexchange.com/a/3831/9844 for the hint on how to do this.
+// Big thanks to http://wordpress.stackexchange.com/a/3831/9844 which sent me own the path to this completed plugin.
 
 add_action('admin_menu', 'cms_post_status_menu');
 /**
@@ -51,14 +51,7 @@ function cms_post_status_menu() {
 			foreach( $ps_statuses as $status_id => $status_name ) {
 				$status_count = ' (' . $status_counts -> $status_id . ')';
 				if( ! ( $status_count == ' (0)' ) ) {
-				array_push(
-					$submenu[$menu], 
-					array(
-						$status_name . $status_count,
-						'read',
-						get_admin_url() . 'edit.php?post_status=' . $status_id . '&post_type=' . $type_id
-					)
-				);
+					$submenu[$menu][] = array( $status_name . $status_count, 'read', get_admin_url() . 'edit.php?post_status=' . $status_id . '&post_type=' . $type_id );
 				}
 			}
 		
