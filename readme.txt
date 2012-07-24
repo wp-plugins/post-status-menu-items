@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management
 Requires at least: 3.0

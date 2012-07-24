@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
