@@ -12,9 +12,9 @@ This plugin adds the post statuses (e.g. "Draft") to Page, Post, and Custom Post
 
 == Description ==
 
-This plugin is useful for people who regularly use all or most of the post statuses. Posts, Pages, and Custom Post Types are all supported by the plugin with options to toggle menu statuses on/off for each post type. __Posts are the only status for which the menu items are enabled by default.__
+This plugin is useful for people who regularly use all or most of the post statuses. Posts, Pages, and Custom Post Types are all supported by the plugin with options to toggle menu statuses on/off for each post type. __Posts are the only post type for which the post status menu items are enabled by default.__
 
-The plugin adds the following post statuses to to the Dashboard's submenus: Drafts, Pending, Scheduled, Published, Private, and Trash. Each post status is followed by the number of posts in that status (e.g. "Drafts (17)"). Statuses with 0 posts are not displayed
+The plugin adds the following post statuses to to the Dashboard's submenus: Drafts, Pending, Scheduled, Published, Private, and Trash. Each post status is followed by the number of posts in that status (e.g. "Drafts (17)"). Statuses with 0 posts are not displayed.
 
 == Installation ==
 
