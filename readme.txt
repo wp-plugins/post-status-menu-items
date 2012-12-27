@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Donate Link: https://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,10 +44,10 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 == Changelog ==
 = 1.1.0 =
 * Added support for custom post statuses made with Edit Flow or `register_post_status()`.
-* Added option to control which posts stati are displayed (see Settings > Writing).
+* Added option to control which post stati are displayed (see Settings > Writing).
 * Moved/added all options to single option in the database. (Previously saved options should be automatically migrated.)
 * First pass at inline documentation.
-* Support for i18n.
+* Now translatable (i.e. i18n).
 * Updated version compatibility #.
 
 = 1.0.1 =
@@ -56,7 +56,7 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 
 = 1.0 =
 * Almost a complete rewrite. Again :)
-* Added "Private" and "Trash Statuses."
+* Added "Private" and "Trash" Statuses.
 * Added support for Pages and Custom Post Types.
 * Added options to toggle display of menu items for all post types (Settings > Writing).
 * Added status counts to each menu item.
