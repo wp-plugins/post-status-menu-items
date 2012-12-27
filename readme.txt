@@ -2,7 +2,7 @@
 Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management
 Requires at least: 3.0
-Tested up to: 3.5-beta3
+Tested up to: 3.5
 Stable tag: 1.0.1
 Donate Link: https://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
@@ -18,7 +18,7 @@ The plugin adds the following post statuses to to the Dashboard's submenus: Draf
 
 == Installation ==
 
-1. Upload the "CMS Post Status Menu" folder to the `/wp-content/plugins/` directory of your WordPress site.
+1. Upload the "post-status-menu-items" folder to the `/wp-content/plugins/` directory of your WordPress site.
 1. Activate the plugin, "Post Status Menu Items" through the "Plugins" menu in WordPress
 
 == Frequently Asked Questions ==
@@ -27,7 +27,7 @@ The plugin adds the following post statuses to to the Dashboard's submenus: Draf
 * Settings > Writing.
 * Look for the "Settings for 'Post Status Menu Items'" section.
 
-= How Do I Turn the Menus On or Off for a Post Type =
+= How Do I Turn the Menus On or Off for a Post Type? =
 * Go to the plugin's settings (see above).
 * Check or uncheck the post types you do or don't want to display post statuses for.
 * Click "Save Changes"
@@ -36,11 +36,16 @@ The plugin adds the following post statuses to to the Dashboard's submenus: Draf
 * Sure thing. Do it on this [thread in the Support Forums](http://wordpress.org/support/topic/plugin-post-status-menu-items-post-your-feature-suggestions-here).
 
 == Screenshots ==
-
 1. The "Posts" flyout menu showing some post statuses.
 2. The "Posts" expanded menu showing some post statuses.
 
 == Changelog ==
+= 1.1.0 =
+* Now supports custom post statuses made with Edit Flow or `register_post_status()`
+* Added option to control which posts statuses (stati!) are displayed (see Settings > Writing).
+* Moved/added all options to single option in the database.
+* Updated version compatibility #.
+
 = 1.0.1 =
 * Updated "Requires at least" version to 3.0 after some research.
 * Tweaked function that adds menu items to be slightly more efficient (avoiding array_push).
