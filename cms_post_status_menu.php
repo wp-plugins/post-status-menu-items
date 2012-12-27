@@ -4,9 +4,16 @@ Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
 Version: 1.1.0
-Author: Mark Root-Wiley aka MRWweb
+Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
 */
+
+// Big thanks to http://wordpress.stackexchange.com/a/3831/9844 which sent me own the path to this completed plugin.
+// Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334/can-i-leave-off-plugin-textdomain-for-terms-used-in-core#comment105315_77334
+
+/* ============================================
+	VERSIONING, INSTALL, UPGRADE, UNINSTALL
+   ============================================ */
 
 define('PSMI_VERSION', '1.1.0');
 
@@ -79,7 +86,19 @@ function psmi_uninstall() {
 	delete_option( 'psmi_options' );
 }
 
-// Big thanks to http://wordpress.stackexchange.com/a/3831/9844 which sent me own the path to this completed plugin.
+/* ============================================
+	I18N
+   ============================================ */
+
+// any languages files
+function cmspsmi_textdomain() {
+	load_plugin_textdomain( 'cmspsmi', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+
+/* ============================================
+	CORE PLUGIN FUNCTIONS
+   ============================================ */
 
 /**
  * appends post statuses to menus if settings warrant such action.
@@ -157,7 +176,7 @@ function ps_remove_excluded_post_statuses( $statuses ) {
 	$psmi_options = get_option( 'psmi_options' );
 
 	foreach ( $statuses as $ps_type_id => $ps_type_name ) {
-		if( $psmi_options['ps_post_stati'][$ps_type_id] ) {
+		if( !empty( $psmi_options['ps_post_stati'][$ps_type_id] ) && $psmi_options['ps_post_stati'][$ps_type_id] ) {
 			unset( $statuses[$ps_type_id] );
 		}
 	}
@@ -165,13 +184,32 @@ function ps_remove_excluded_post_statuses( $statuses ) {
 	return $statuses;
 }
 
-/*
- * Make some rad plugin settings
+/**
+ * list post types intended for use by site admins
  * 
- * Thanks, Codex & Chip!
- * codex.wordpress.org/Settings_API 
- * chipbennett.net/2011/02/17/incorporating-the-settings-api-in-wordpress-themes/
- */
+ * @return	array		contains non-_builtin post types where show_ui = true
+*/
+function ps_get_post_type_list() {
+	// The post types we'll always display
+	$ps_post_types = array(
+		'post' => _x( 'Posts', 'the Posts core post type', 'cmspsmi' ),
+		'page' => _x( 'Pages', 'the Pages core post type', 'cmspsmi' )
+	);
+	
+	// Get all Public but Not Built In Post Types
+	$ps_custom_post_types = get_post_types( array( 'show_ui' => true, '_builtin' => false ), 'objects', 'AND' );
+	
+	// Build array with the other post types
+	foreach( $ps_custom_post_types as $ps_type_id => $ps_type_name ) {
+		$ps_post_types[$ps_type_id] = $ps_type_name->labels->name;
+	}
+	
+	return $ps_post_types;
+}
+
+/* ============================================
+	PLUGIN SETTINGS
+   ============================================ */
 
 /**
  * adds setting section, adds and registers all settings fields, sets posts to show by default 
@@ -281,35 +319,17 @@ function psmi_sanitize_options( $input ) {
 	return $current_options;
 }
 
-/**
- * list post types intended for use by site admins
- * 
- * @return	array		contains non-_builtin post types where show_ui = true
-*/
-function ps_get_post_type_list() {
-	// The post types we'll always display
-	$ps_post_types = array(
-		'post' => _x( 'Posts', 'the "Posts" core post type', 'cmspsmi' ),
-		'page' => _x( 'Pages', 'the "Pages" core post type', 'cmspsmi' )
-	);
-	
-	// Get all Public but Not Built In Post Types
-	$ps_custom_post_types = get_post_types( array( 'show_ui' => true, '_builtin' => false ), 'objects', 'AND' );
-	
-	// Build array with the other post types
-	foreach( $ps_custom_post_types as $ps_type_id => $ps_type_name ) {
-		$ps_post_types[$ps_type_id] = $ps_type_name->labels->name;
-	}
-	
-	return $ps_post_types;
-}
-
-/* All Hooks */
+/* ============================================
+	HOOKS
+   ============================================ */
 
 // Activation, Upgrade, and Deactivation
 register_activation_hook( __FILE__, 'psmi_activate' );
 add_action( 'admin_init', 'psmi_upgrade' );
 register_uninstall_hook( __FILE__, 'psmi_uninstall' );
+
+// i18n
+add_action( 'plugins_loaded', 'cmspsmi_textdomain' );
 
 // Plugin Settings
 add_filter( 'psmi_statuses', 'ps_remove_excluded_post_statuses' );

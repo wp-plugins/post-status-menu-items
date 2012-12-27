@@ -1,6 +1,6 @@
-﻿=== Plugin Name ===
+﻿=== Post Status Menu Items ===
 Contributors: mrwweb
-Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management
+Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
 Tested up to: 3.5
 Stable tag: 1.0.1
@@ -8,13 +8,15 @@ Donate Link: https://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin adds the post statuses (e.g. "Draft") to Page, Post, and Custom Post Type admin menus.
+Adds post status links (e.g. "Draft") to post type admin menus.
 
 == Description ==
 
-This plugin is useful for people who regularly use all or most of the post statuses. Posts, Pages, and Custom Post Types are all supported by the plugin with options to toggle menu statuses on/off for each post type. __Posts are the only post type for which the post status menu items are enabled by default.__
+This plugin is useful for people who regularly use all or most of the post statuses with Posts, Pages, or Custom Post Types. The plugin provides options to control which post statuses are displayed and in which menus those statuses are displayed. Each post status is followed by the number of posts in that status (e.g. "Drafts (17)").
 
-The plugin adds the following post statuses to to the Dashboard's submenus: Drafts, Pending, Scheduled, Published, Private, and Trash. Each post status is followed by the number of posts in that status (e.g. "Drafts (17)"). Statuses with 0 posts are not displayed.
+Statuses with 0 posts are not displayed. Posts are the only post type for which the post status menu items are enabled by default.
+
+This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/) or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
 
 == Installation ==
 
@@ -41,9 +43,11 @@ The plugin adds the following post statuses to to the Dashboard's submenus: Draf
 
 == Changelog ==
 = 1.1.0 =
-* Now supports custom post statuses made with Edit Flow or `register_post_status()`
-* Added option to control which posts statuses (stati!) are displayed (see Settings > Writing).
-* Moved/added all options to single option in the database.
+* Added support for custom post statuses made with Edit Flow or `register_post_status()`.
+* Added option to control which posts stati are displayed (see Settings > Writing).
+* Moved/added all options to single option in the database. (Previously saved options should be automatically migrated.)
+* First pass at inline documentation.
+* Support for i18n.
 * Updated version compatibility #.
 
 = 1.0.1 =
@@ -65,6 +69,8 @@ The plugin adds the following post statuses to to the Dashboard's submenus: Draf
 * First release.
 
 == Upgrade Notice ==
+= 1.1.0 =
+New option to hide specific statuses. Now compatible with custom statuses, Edit Flow plugin, etc.
 
 = 1.0.1 =
 This update contains a very minor performance improvement.
