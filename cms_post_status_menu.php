@@ -8,8 +8,10 @@ Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
 */
 
-// Big thanks to http://wordpress.stackexchange.com/a/3831/9844 which sent me own the path to this completed plugin.
-// Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334/can-i-leave-off-plugin-textdomain-for-terms-used-in-core#comment105315_77334
+/*
+Big thanks to http://wordpress.stackexchange.com/a/3831/9844 which sent me own the path to this completed plugin.
+Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334/can-i-leave-off-plugin-textdomain-for-terms-used-in-core#comment105315_77334
+*/
 
 /* ============================================
 	VERSIONING, INSTALL, UPGRADE, UNINSTALL

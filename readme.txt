@@ -1,4 +1,4 @@
-﻿=== Post Status Menu Items ===
+=== Post Status Menu Items ===
 Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
