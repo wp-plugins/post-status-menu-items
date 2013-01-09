@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Donate Link: https://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,9 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 3. Plugin Options on Settings > Writing (specific Post Types and Post Statuses may vary by site) 
 
 == Changelog ==
+= 1.1.2 =
+* Second headers already sent fix. This one was an encoding issue.
+
 = 1.1.1 =
 * Fixed "headers already sent" error with some plugins.
 * Added screenshot of plugin options
@@ -74,6 +77,9 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 * First release.
 
 == Upgrade Notice ==
+= 1.1.2 =
+Another fix for "headers already sent"/admin white screen. Sorry for the inconvenience.
+
 = 1.1.1 =
 Bug fix for "headers already sent"/white screen error.
 
