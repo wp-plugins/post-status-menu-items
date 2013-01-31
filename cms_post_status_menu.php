@@ -3,7 +3,7 @@
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
-Version: 1.1.2
+Version: 1.1.3
 Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
 */
@@ -17,7 +17,7 @@ Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334
 	VERSIONING, INSTALL, UPGRADE, UNINSTALL
    ============================================ */
 
-define('PSMI_VERSION', '1.1.2');
+define('PSMI_VERSION', '1.1.3');
 
 /**
  * checks version number and updates it if it's unset or different
@@ -145,10 +145,14 @@ function cms_post_status_menu() {
 				
 				// If a status has any posts, show it
 				if( $ps_status_count > 0 ) {
-
-					$ps_status_label = $status->label_count['plural'];
+					// Get the plural post status label
+					$ps_status_label = $status->label;
 					$submenu[$menu][] = array(
-						sprintf( $ps_status_label, $ps_status_count ),
+						sprintf(
+							'%1$s (%2$s)',
+							esc_attr( $ps_status_label ),
+							intval( $ps_status_count )
+						),
 						'read',
 						sprintf(
 							'%1$sedit.php?post_status=%2$s&post_type=%3$s',
