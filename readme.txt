@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
 Tested up to: 3.6-beta1
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -40,7 +40,8 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 == Screenshots ==
 1. The "Posts" flyout menu showing some post statuses.
 2. The "Posts" expanded menu showing some post statuses.
-3. Plugin Options on Settings > Writing (specific Post Types and Post Statuses may vary by site) 
+3. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
+4. New in Version 1.2.0, optionally show post statuses in "Right Now" dashboard widget.
 
 == Changelog ==
 = 1.2.0 =
