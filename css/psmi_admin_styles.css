@@ -1,0 +1,11 @@
+#dashboard_right_now .table_content,
+#dashboard_right_now .ps_table_post_statuses,
+#dashboard_right_now .table_discussion {
+	width:31%;	
+}
+
+#dashboard_right_now .ps_table_post_statuses {
+	float: left;
+	margin-left: 3.5%;
+	border-top: 1px solid #ECECEC;
+}

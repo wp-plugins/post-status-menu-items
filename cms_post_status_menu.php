@@ -3,7 +3,7 @@
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
-Version: 1.1.3
+Version: 1.2.0
 Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
 */
@@ -17,7 +17,7 @@ Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334
 	VERSIONING, INSTALL, UPGRADE, UNINSTALL
    ============================================ */
 
-define('PSMI_VERSION', '1.1.3');
+define('PSMI_VERSION', '1.2.0');
 
 /**
  * checks version number and updates it if it's unset or different
@@ -213,6 +213,63 @@ function ps_get_post_type_list() {
 	return $ps_post_types;
 }
 
+/**
+ * Add post statuses to "Right Now" Dashboard Widget
+ * 
+ */
+function ps_right_now_widget() {
+
+	$ps_options = get_option( 'psmi_options' );
+	// stop if we're hiding it.
+	if( $ps_options['ps_right_now'] )
+		return;
+
+	// get the statuses
+	$ps_statuses = get_post_stati( array( 'show_in_admin_status_list' => true ), 'objects' );
+
+	// filter the list of statuses for anything people want to do
+	$ps_statuses = apply_filters( 'psmi_statuses', $ps_statuses );
+
+	// Get status counts of all post types
+	$ps_status_counts = wp_count_posts( 'post' );
+
+	echo '</table></div>';
+	echo '<div class="table ps_table_post_statuses">';
+	echo '<p class="sub">' . __( 'Posts', 'cmspsmi' ) . '</p><table>';
+
+	// loop through statuses array
+	$first = true;
+	foreach( $ps_statuses as $status ) {
+
+		$ps_status_id = $status->name;
+
+		$ps_status_count = $ps_status_counts -> $ps_status_id;
+
+		// If a status has any posts, show it
+		if( $ps_status_count > 0 ) {
+			// Get the plural post status label
+			$ps_status_label = $status->label;
+			if( $first ) {
+				echo '<tr class="first">';
+			} else {
+				echo '<tr>';
+			}
+			printf(
+				'<td class="first b"><a href="%1$sedit.php?post_status=%2$s">%3$s</a></td>
+				<td class="t"><a href="%1$sedit.php?post_status=%2$s">%4$s</a></td>',
+				get_admin_url(),
+				$ps_status_id,
+				intval( $ps_status_count ),
+				esc_attr( $ps_status_label )
+			);
+			echo '</tr>';
+			$first = false;
+		}
+	}
+}
+add_action( 'right_now_content_table_end', 'ps_right_now_widget' );
+
+
 /* ============================================
 	PLUGIN SETTINGS
    ============================================ */
@@ -229,6 +286,8 @@ function ps_settings_api_init() {
 		'writing'
 	);
 
+	register_setting( 'writing', 'psmi_options', 'psmi_sanitize_options' );
+
 	// Post type option
 	add_settings_field(
 		'psmi_options_post_type',
@@ -237,7 +296,6 @@ function ps_settings_api_init() {
 		'writing',
 		'ps_setting_section'
 	);
-	register_setting( 'writing', 'psmi_options', 'psmi_sanitize_options' );
 
 	// Post status option
 	add_settings_field(
@@ -247,7 +305,15 @@ function ps_settings_api_init() {
 		'writing',
 		'ps_setting_section'
 	);
-	register_setting( 'writing', 'psmi_options', 'psmi_sanitize_options' );
+
+	// Right Now Dashboard Option
+	add_settings_field(
+		'psmi_options_right_now',
+		__( '"Right Now" Dashboard Widget', 'cmspsmi' ),
+		'psmi_options_right_now_cb',
+		'writing',
+		'ps_setting_section'
+	);
 }
 
 
@@ -301,6 +367,19 @@ function psmi_options_post_stati_cb() {
 }
 
 /**
+ * create plugin right now dashboard options form elements
+ */
+function psmi_options_right_now_cb() {
+	$psmi_options = get_option( 'psmi_options' );
+	$option = ( isset( $psmi_options['ps_right_now'] ) ? $psmi_options['ps_right_now'] : false );
+	printf(
+		'<input name="psmi_options[ps_right_now]" id="psmi_options[ps_right_now]" type="checkbox" value="true" %1$s />
+		<label for="psmi_options[ps_right_now]">' . __( 'Hide post status list in "Right Now" dashboard widget.', 'cmspsmi' ) . '</label><br />',
+		checked( $option, true, false )
+	);
+}
+
+/**
  * sanitize post type plugin options
  *
  * @param	array	$input	list of submitted option values
@@ -322,8 +401,23 @@ function psmi_sanitize_options( $input ) {
 		$current_options['ps_post_stati'][$id] = ( ! empty( $input['ps_post_stati'][$id] ) ? true : false );
 	}
 
+	$current_options['ps_right_now'] = ( ! empty( $input['ps_right_now'] )  ? true : false );
+
 	return $current_options;
 }
+
+
+/* ============================================
+	ADMIN STYLES
+   ============================================ */
+function ps_admin_styles() {
+	$ps_options = get_option( 'psmi_options' );
+	// stop if we're hiding it.
+	if( ! $ps_options['ps_right_now'] ) {
+		wp_enqueue_style( 'psmi_admin_css', plugins_url( 'css/psmi_admin_styles.css', __FILE__), false, PSMI_VERSION );
+	}
+}
+
 
 /* ============================================
 	HOOKS
@@ -336,6 +430,9 @@ register_uninstall_hook( __FILE__, 'psmi_uninstall' );
 
 // i18n
 add_action( 'plugins_loaded', 'cmspsmi_textdomain' );
+
+// styles
+add_action( 'admin_enqueue_scripts', 'ps_admin_styles' );
 
 // Plugin Settings
 add_filter( 'psmi_statuses', 'ps_remove_excluded_post_statuses' );
