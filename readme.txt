@@ -2,8 +2,8 @@
 Contributors: mrwweb
 Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
 Requires at least: 3.0
-Tested up to: 3.6-beta1
-Stable tag: 1.2.0
+Tested up to: 3.6
+Stable tag: 1.2.1
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,6 +17,13 @@ This plugin is useful for people who regularly use all or most of the post statu
 Statuses with 0 posts are not displayed. Posts are the only post type for which the post status menu items are enabled by default.
 
 This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/) or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
+
+Settings available on **Settings > Writing**.
+
+= Other Plugins by MRWweb =
+
+* [Feature a Page Widget](http://wordpress.org/plugins/feature-a-page-widget/) - Shows a summary of any Page in any sidebar.
+* [Advanced Custom Fields Repeater & Flexible Content Fields Collapser](http://wordpress.org/plugins/advanced-custom-field-repeater-collapser/) - Easier sorting for large repeated fields in the Advanced Custom Fields plugin.
 
 == Installation ==
 
@@ -44,6 +51,10 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 4. New in Version 1.2.0, optionally show post statuses in "Right Now" dashboard widget.
 
 == Changelog ==
+= 1.2.1 (September 27, 2013) =
+* Added capability check so Subscribers don't see statuses. (Thanks, [@benlobaugh](http://profiles.wordpress.org/blobaugh/)!)
+* Cleaned up "Right Now" dashboard widget styles with MP6.
+
 = 1.2.0 =
 Added Post statuses to "Right Now" dashboard widget.
 
@@ -81,6 +92,9 @@ Added Post statuses to "Right Now" dashboard widget.
 * First release.
 
 == Upgrade Notice ==
+= 1.2.1 =
+Minor style and functionality fixes.
+
 = 1.2.0 =
 New! Post statuses shown in "Right Now" dashboard widget.
 
