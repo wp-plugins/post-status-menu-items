@@ -1,57 +1,45 @@
-# Copyright (C) 2013 
+# Copyright (C) 2012 
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/post-status-menu-items\n"
-"POT-Creation-Date: 2013-04-07 00:17:41+00:00\n"
+"POT-Creation-Date: 2012-12-27 02:07:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: cms_post_status_menu.php:201
-msgctxt "the Posts core post type"
-msgid "Posts"
-msgstr ""
-
-#: cms_post_status_menu.php:202
-msgctxt "the Pages core post type"
-msgid "Pages"
-msgstr ""
-
-#: cms_post_status_menu.php:238
-msgid "Posts"
-msgstr ""
-
-#: cms_post_status_menu.php:284
+#: cms_post_status_menu.php:183
 msgid "Post Status Menu Items Plugin Settings"
 msgstr ""
 
-#: cms_post_status_menu.php:294
+#: cms_post_status_menu.php:191
 msgid "Select the post type admin menus for which to show statuses"
 msgstr ""
 
-#: cms_post_status_menu.php:303
+#: cms_post_status_menu.php:201
 msgid ""
 "Select the post statuses to <strong>exclude</strong> from post type admin "
 "menus"
 msgstr ""
 
-#: cms_post_status_menu.php:312
-msgid "\"Right Now\" Dashboard Widget"
-msgstr ""
-
-#: cms_post_status_menu.php:337
+#: cms_post_status_menu.php:227
 msgid "Show menu items in the <strong>%3$s</strong> menu."
 msgstr ""
 
-#: cms_post_status_menu.php:361
+#: cms_post_status_menu.php:251
 msgid "Do not show <strong>%3$s</strong> posts link in post type admin menu."
 msgstr ""
 
-#: cms_post_status_menu.php:377
-msgid "Hide post status list in \"Right Now\" dashboard widget."
+#: cms_post_status_menu.php:292
+msgctxt "the \"Posts\" core post type"
+msgid "Posts"
+msgstr ""
+
+#: cms_post_status_menu.php:293
+msgctxt "the \"Pages\" core post type"
+msgid "Pages"
 msgstr ""
