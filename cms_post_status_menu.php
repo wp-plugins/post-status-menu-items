@@ -3,9 +3,11 @@
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
-Version: 1.2.1
+Version: 1.3.0
 Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
+Text Domain: post-status-menu-items
+Domain Path: /languages
 */
 
 /*
@@ -17,7 +19,7 @@ Regarding i18n of core terms: http://wordpress.stackexchange.com/questions/77334
 	VERSIONING, INSTALL, UPGRADE, UNINSTALL
    ============================================ */
 
-define('PSMI_VERSION', '1.2.1');
+define('PSMI_VERSION', '1.3.0');
 
 /**
  * checks version number and updates it if it's unset or different
@@ -25,7 +27,8 @@ define('PSMI_VERSION', '1.2.1');
 function psmi_update_version() {
 	// Update the Plugin Version if it doesn't exist or is out of sync
 	$psmi_options = get_option( 'psmi_options' );
-	if( !isset( $psmi_options['ps_version'] ) || $psmi_options['ps_version'] != PSMI_VERSION ) {
+	if( !isset( $psmi_options['ps_version'] )
+		|| $psmi_options['ps_version'] != PSMI_VERSION ) {
 		$psmi_options['ps_version'] = PSMI_VERSION;
 		update_option( 'psmi_options', $psmi_options );
 	}
@@ -93,8 +96,8 @@ function psmi_uninstall() {
    ============================================ */
 
 // any languages files
-function cmspsmi_textdomain() {
-	load_plugin_textdomain( 'cmspsmi', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+function psmi_textdomain() {
+	load_plugin_textdomain( 'post-status-menu-items', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 
 
@@ -122,7 +125,8 @@ function cms_post_status_menu() {
 	foreach( $ps_post_types as $ps_type_id => $ps_type_name ) {
 		
 		// check option for whether to show statuses for this post type
-		if( isset( $psmi_options['ps_post_types'][$ps_type_id] ) && $psmi_options['ps_post_types'][$ps_type_id] ) {
+		if( isset( $psmi_options['ps_post_types'][$ps_type_id] )
+			&& $psmi_options['ps_post_types'][$ps_type_id] ) {
 			
 			// an array of all the statuses
 			$ps_statuses = get_post_stati( array( 'show_in_admin_status_list' => true ), 'objects' );
@@ -184,7 +188,8 @@ function ps_remove_excluded_post_statuses( $statuses ) {
 	$psmi_options = get_option( 'psmi_options' );
 
 	foreach ( $statuses as $ps_type_id => $ps_type_name ) {
-		if( !empty( $psmi_options['ps_post_stati'][$ps_type_id] ) && $psmi_options['ps_post_stati'][$ps_type_id] ) {
+		if( !empty( $psmi_options['ps_post_stati'][$ps_type_id] )
+			&& $psmi_options['ps_post_stati'][$ps_type_id] ) {
 			unset( $statuses[$ps_type_id] );
 		}
 	}
@@ -200,12 +205,16 @@ function ps_remove_excluded_post_statuses( $statuses ) {
 function ps_get_post_type_list() {
 	// The post types we'll always display
 	$ps_post_types = array(
-		'post' => _x( 'Posts', 'the Posts core post type', 'cmspsmi' ),
-		'page' => _x( 'Pages', 'the Pages core post type', 'cmspsmi' )
+		'post' => _x( 'Posts', 'the Posts core post type', 'post-status-menu-items' ),
+		'page' => _x( 'Pages', 'the Pages core post type', 'post-status-menu-items' )
 	);
 	
 	// Get all Public but Not Built In Post Types
-	$ps_custom_post_types = get_post_types( array( 'show_ui' => true, '_builtin' => false ), 'objects', 'AND' );
+	$ps_custom_post_types = get_post_types(
+		array( 'show_ui' => true, '_builtin' => false ),
+		'objects',
+		'AND'
+	);
 	
 	// Build array with the other post types
 	foreach( $ps_custom_post_types as $ps_type_id => $ps_type_name ) {
@@ -216,7 +225,7 @@ function ps_get_post_type_list() {
 }
 
 /**
- * Add post statuses to "Right Now" Dashboard Widget
+ * Add post statuses to "Right Now" Dashboard Widget, <=WP 3.7.X
  * 
  */
 function ps_right_now_widget() {
@@ -237,7 +246,7 @@ function ps_right_now_widget() {
 
 	echo '</table></div>';
 	echo '<div class="table ps_table_post_statuses">';
-	echo '<p class="sub">' . __( 'Posts', 'cmspsmi' ) . '</p><table>';
+	echo '<p class="sub">' . _x( 'Posts', 'the Posts core post type', 'post-status-menu-items' ) . '</p><table>';
 
 	// loop through statuses array
 	$first = true;
@@ -271,6 +280,60 @@ function ps_right_now_widget() {
 }
 add_action( 'right_now_content_table_end', 'ps_right_now_widget' );
 
+/**
+ * Add post statuses to "At a Glance" Dashboard Widget, WP 3.8+
+ * 
+ * Uses "Right Now" widget setting when upgrading from 3.7.X to 3.8.0+
+ * 
+ */
+function ps_at_a_glance_widget( $items ) {
+
+	$ps_options = get_option( 'psmi_options' );
+	// stop if we're hiding it.
+	if( $ps_options['ps_right_now'] )
+		return $items;
+
+	// get the statuses
+	$ps_statuses = get_post_stati( array( 'show_in_admin_status_list' => true ), 'objects' );
+
+	// filter the list of statuses for anything people want to do
+	$ps_statuses = apply_filters( 'psmi_statuses', $ps_statuses );
+
+	// Get status counts of all post types
+	$ps_status_counts = wp_count_posts( 'post' );
+
+	// Build a string of all new list items to append to $items
+	$glance_status_html = '';
+	// loop through statuses array
+	foreach( $ps_statuses as $status ) {
+
+		$ps_status_id = $status->name;
+
+		$ps_status_count = $ps_status_counts -> $ps_status_id;
+
+		// If a status has any posts, show it
+		if( $ps_status_count > 0 ) {
+			// Get the plural post status label
+			$ps_status_label = $status->label;
+			$glance_status_html .= sprintf(
+				'<li class="%2$s-status-post-count"><a href="%1$sedit.php?post_status=%2$s">%3$s %4$s</a></li>',
+				get_admin_url(),
+				$ps_status_id,
+				intval( $ps_status_count ),
+				esc_attr( $ps_status_label )
+			);
+
+		}
+	}
+
+	// escape the first list, output new list, open third list.
+	$items[] = '</li></ul><h4>' . _x( 'Posts', 'the Posts core post type', 'post-status-menu-items' ) . '</h4><ul class="ps-post-statuses">' . $glance_status_html . '</ul><ul><li>';
+
+	return $items;
+}
+add_filter( 'dashboard_glance_items', 'ps_at_a_glance_widget', -10 );
+
+
 
 /* ============================================
 	PLUGIN SETTINGS
@@ -283,7 +346,7 @@ function ps_settings_api_init() {
 	// Add the section to writing settings so we can add our fields to it
 	add_settings_section(
 		'ps_setting_section',
-		__( 'Post Status Menu Items Plugin Settings', 'cmspsmi' ),
+		__( 'Post Status Menu Items Plugin Settings', 'post-status-menu-items' ),
 		'ps_setting_section_callback_function',
 		'writing'
 	);
@@ -293,7 +356,7 @@ function ps_settings_api_init() {
 	// Post type option
 	add_settings_field(
 		'psmi_options_post_type',
-		__( 'Select the post type admin menus for which to show statuses', 'cmspsmi' ),
+		__( 'Show statuses in menu for these post types', 'post-status-menu-items' ),
 		'psmi_options_post_type_cb',
 		'writing',
 		'ps_setting_section'
@@ -302,7 +365,7 @@ function ps_settings_api_init() {
 	// Post status option
 	add_settings_field(
 		'psmi_options_post_stati',
-		__( 'Select the post statuses to <strong>exclude</strong> from post type admin menus', 'cmspsmi' ),
+		__( 'Hide these statuses for post type menus ', 'post-status-menu-items' ),
 		'psmi_options_post_stati_cb',
 		'writing',
 		'ps_setting_section'
@@ -311,7 +374,7 @@ function ps_settings_api_init() {
 	// Right Now Dashboard Option
 	add_settings_field(
 		'psmi_options_right_now',
-		__( '"Right Now" Dashboard Widget', 'cmspsmi' ),
+		__( 'Hide Statuses in "Right Now" / "At a Glance" Dashboard Widget', 'post-status-menu-items' ),
 		'psmi_options_right_now_cb',
 		'writing',
 		'ps_setting_section'
@@ -336,7 +399,7 @@ function psmi_options_post_type_cb() {
 		$option = ( isset( $psmi_options['ps_post_types'][$ps_type_id] ) ? $psmi_options['ps_post_types'][$ps_type_id] : false );
 		printf(
 			'<input name="psmi_options[ps_post_types][%1$s]" id="psmi_options[ps_post_types][%1$s]" type="checkbox" value="true" %2$s />
-			<label for="psmi_options[ps_post_types][%1$s]">' . __( 'Show menu items in the <strong>%3$s</strong> menu.', 'cmspsmi' ) . '</label><br />',
+			<label for="psmi_options[ps_post_types][%1$s]">' . __( 'Show statuses in the <strong>%3$s</strong> menu.', 'post-status-menu-items' ) . '</label><br />',
 			esc_attr( $ps_type_id ),
 			checked( $option, true, false ),
 			esc_attr( $ps_type_name )
@@ -360,7 +423,7 @@ function psmi_options_post_stati_cb() {
 
 		printf(
 			'<input name="psmi_options[ps_post_stati][%1$s]" id="psmi_options[ps_post_stati][%1$s]" type="checkbox" value="true" %2$s />
-			<label for="psmi_options[ps_post_stati][%1$s]">' . __( 'Do not show <strong>%3$s</strong> posts link in post type admin menu.', 'cmspsmi' ) . '</label><br />',
+			<label for="psmi_options[ps_post_stati][%1$s]">' . __( 'Hide <strong>%3$s</strong> status in admin menus.', 'post-status-menu-items' ) . '</label><br />',
 			esc_attr( $ps_status_id ),
 			checked( $option, true, false ),
 			esc_attr( $ps_status_label )
@@ -376,7 +439,7 @@ function psmi_options_right_now_cb() {
 	$option = ( isset( $psmi_options['ps_right_now'] ) ? $psmi_options['ps_right_now'] : false );
 	printf(
 		'<input name="psmi_options[ps_right_now]" id="psmi_options[ps_right_now]" type="checkbox" value="true" %1$s />
-		<label for="psmi_options[ps_right_now]">' . __( 'Hide post status list in "Right Now" dashboard widget.', 'cmspsmi' ) . '</label><br />',
+		<label for="psmi_options[ps_right_now]">' . __( 'Hide Posts Statuses list on the Dashboard.', 'post-status-menu-items' ) . '</label><br />',
 		checked( $option, true, false )
 	);
 }
@@ -431,7 +494,7 @@ add_action( 'admin_init', 'psmi_upgrade' );
 register_uninstall_hook( __FILE__, 'psmi_uninstall' );
 
 // i18n
-add_action( 'plugins_loaded', 'cmspsmi_textdomain' );
+add_action( 'plugins_loaded', 'psmi_textdomain' );
 
 // styles
 add_action( 'admin_enqueue_scripts', 'ps_admin_styles' );

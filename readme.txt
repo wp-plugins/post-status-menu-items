@@ -1,9 +1,9 @@
-=== Post Status Menu Items ===
+﻿=== Post Status Menu Items ===
 Contributors: mrwweb
-Tags: post status, admin menu, admin, administration, cms, scheduled, drafts, content management, edit flow
+Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 1.2.1
+Tested up to: 3.8
+Stable tag: 1.3.0
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,13 +12,25 @@ Adds post status links–e.g. "Draft" (7)–to post type admin menus.
 
 == Description ==
 
-This plugin is useful for people who regularly use all or most of the post statuses with Posts, Pages, or Custom Post Types. The plugin provides options to control which post statuses are displayed and in which menus those statuses are displayed. Each post status is followed by the number of posts in that status (e.g. "Drafts (17)").
+This plugin is useful for people who regularly use all or most of the post statuses with Posts, Pages, or Custom Post Types. Post Status Menu Items does the following: 
 
-Statuses with 0 posts are not displayed. Posts are the only post type for which the post status menu items are enabled by default.
+1. Show each post status and number of posts with that status (e.g. "Drafts (7)") in each post type's admin menu.
+1. Show the number of Posts with each post status in the "Right Now" / "At a Glance" admin Dashboard Widget.
+1. Show post status icons with each status at the top of admin post list pages.
+
+Options give control over which post statuses are displayed and in which menus those statuses are displayed. Post statuses in the "Right Now" / "At a Glance" admin Dashboard widget can also be turned off.
+
+Screenshots of all features and settings are available on [the Screenshots page](http://wordpress.org/plugins/post-status-menu-items/screenshots/).
+
+*Notes*
+
+- Plugin settings available on **Settings > Writing**.
+- Statuses with 0 posts are never displayed.
+- Posts are the only post type for which the post status menu items are enabled by default.
 
 This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/) or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
 
-Settings available on **Settings > Writing**.
+
 
 = Other Plugins by MRWweb =
 
@@ -48,9 +60,20 @@ Settings available on **Settings > Writing**.
 1. The "Posts" flyout menu showing some post statuses.
 2. The "Posts" expanded menu showing some post statuses.
 3. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
-4. New in Version 1.2.0, optionally show post statuses in "Right Now" dashboard widget.
+4. Show post statuses in "Right Now" dashboard widget up to WordPress 3.8.
+5. Show post statuses in the "At a Glance" widget in WordPress 3.8 or later.
+6. Post Status icons also appear with each status in the "All Posts" admin screen.
 
 == Changelog ==
+= 1.3.0 (December 12, 2013) =
+* [New] In WordPress 3.8+, display Posts statuses in "At a Glance" Dashboard widget with awesome Dashicons. (Uses old "Right Now" widget setting. Statuses remain in the "Right Now" widget in older verions of WordPress.)
+* [New] Status Icons added to top of "post list" admin page. (Icons courtesty of the awesome new [dashicons](http://melchoyce.github.io/dashicons/).)
+* [i18n] Support for new [WordPress 3.7+ Language Packs](http://ottopress.com/2013/language-packs-101-prepwork/).
+* [Settings] Revised settings labels for [hopefully!] better clarity.
+* [Misc] Add Screenshots showing new "At a Glance" widget and Post Status icons on posts list admin pages.
+* [Misc] Clarify description of plugin in readme.
+* [Regression] Crappy "At a Glance" HTML markup courtesy of [#26495](http://core.trac.wordpress.org/ticket/26495). [Bug filed: #26571.](http://core.trac.wordpress.org/ticket/26571)
+
 = 1.2.1 (September 27, 2013) =
 * Added capability check so Subscribers don't see statuses. (Thanks, [@benlobaugh](http://profiles.wordpress.org/blobaugh/)!)
 * Cleaned up "Right Now" dashboard widget styles with MP6.
@@ -92,6 +115,9 @@ Added Post statuses to "Right Now" dashboard widget.
 * First release.
 
 == Upgrade Notice ==
+= 1.3.0 =
+New status icons & WordPress 3.8 support. Language pack support.
+
 = 1.2.1 =
 Minor style and functionality fixes.
 
