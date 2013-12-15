@@ -60,8 +60,8 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 1. The "Posts" flyout menu showing some post statuses.
 2. The "Posts" expanded menu showing some post statuses.
 3. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
-4. Show post statuses in "Right Now" dashboard widget up to WordPress 3.8.
-5. Show post statuses in the "At a Glance" widget in WordPress 3.8 or later.
+4. Show post statuses in "Right Now" dashboard widget or...
+5. ...Show post statuses in the new "At a Glance" widget.
 6. Post Status icons also appear with each status in the "All Posts" admin screen.
 
 == Changelog ==
