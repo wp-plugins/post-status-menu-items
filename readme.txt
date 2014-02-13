@@ -1,9 +1,9 @@
-﻿=== Post Status Menu Items ===
+=== Post Status Menu Items ===
 Contributors: mrwweb
 Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,16 +59,25 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 == Screenshots ==
 1. The "Posts" flyout menu showing some post statuses.
 2. The "Posts" expanded menu showing some post statuses.
-3. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
-4. Show post statuses in "Right Now" dashboard widget up to WordPress 3.8.
-5. Show post statuses in the "At a Glance" widget in WordPress 3.8 or later.
-6. Post Status icons also appear with each status in the "All Posts" admin screen.
+3. Post Status icons also appear with each status in the "All Posts" admin screen.
+4. Show post statuses in the "At a Glance" widget in WordPress 3.8 or later.
+5. Show post statuses in "Right Now" dashboard widget up to WordPress 3.8.
+6. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
 
 == Changelog ==
+= 1.3.1 (February 13, 2014) =
+* [Fix] Broken Trashicon Dashicon.
+* [Fix] Add additional capability check to avoid Pages showing for Contributors. Thanks @csigncsign for reporting this.
+* [Fix] Hide Posts screen status icons in < WP3.8.
+* [New] Set better icons for "All" and "Mine" statuses.
+* [Change] Remove conditional loading of stylesheet. Load on all admin pages.
+* [readme] New and reordered screenshots for 3.8.
+
 = 1.3.0 (December 12, 2013) =
 * [New] In WordPress 3.8+, display Posts statuses in "At a Glance" Dashboard widget with awesome Dashicons. (Uses old "Right Now" widget setting. Statuses remain in the "Right Now" widget in older verions of WordPress.)
 * [New] Status Icons added to top of "post list" admin page. (Icons courtesty of the awesome new [dashicons](http://melchoyce.github.io/dashicons/).)
 * [i18n] Support for new [WordPress 3.7+ Language Packs](http://ottopress.com/2013/language-packs-101-prepwork/).
+* [i18n] Updated .pot in `/langauges/`
 * [Settings] Revised settings labels for [hopefully!] better clarity.
 * [Misc] Add Screenshots showing new "At a Glance" widget and Post Status icons on posts list admin pages.
 * [Misc] Clarify description of plugin in readme.
@@ -115,6 +124,9 @@ Added Post statuses to "Right Now" dashboard widget.
 * First release.
 
 == Upgrade Notice ==
+= 1.3.1 =
+Permissions fix for Contributors. Improved icons for 3.8. Better <3.8 support.
+
 = 1.3.0 =
 New status icons & WordPress 3.8 support. Language pack support.
 

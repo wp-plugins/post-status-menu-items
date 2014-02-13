@@ -1,7 +1,6 @@
 /*-----------------------------------------------------------
  * <= WordPress 3.7 Styles
  *-----------------------------------------------------------*/
-
 /* "Right Now" Dashboard Widget */
 #dashboard_right_now .table_content,
 #dashboard_right_now .ps_table_post_statuses,
@@ -54,30 +53,54 @@
  * 1) "At a Glance"
  * 2) Posts admin pages
  */
+/* Published */
 #dashboard_right_now .publish-status-post-count a:before,
 .edit-php .subsubsub .publish a:before {
 	content:'\f109';
 }
+/* Sticky */
 .edit-php .subsubsub .sticky a:before {
 	content: '\f155';
 }
+/* Scheduled */
 #dashboard_right_now .future-status-post-count a:before,
 .edit-php .subsubsub .future a:before {
 	content:'\f321';
 }
+/* Draft */
 #dashboard_right_now .draft-status-post-count a:before,
 .edit-php .subsubsub .draft a:before {
 	content:'\f327';
 }
+/* Pending */
 #dashboard_right_now .pending-status-post-count a:before,
 .edit-php .subsubsub .pending a:before {
 	content:'\f125';
 }
+/* Private */
 #dashboard_right_now .private-status-post-count a:before,
 .edit-php .subsubsub .private a:before {
 	content:'\f160';
 }
+/* Trash */
 #dashboard_right_now .trash-status-post-count a:before,
 .edit-php .subsubsub .trash a:before {
-	content: "\f458";
+	content: "\f182";
 }
+/* All */
+.edit-php .subsubsub .all a:before {
+	content: "\f180";
+}
+/* Mine */
+.edit-php .subsubsub .mine a:before {
+	content: "\f110";
+}
+
+/* Hide Icons in < WP 3.8...within reason */
+.branch-3-7.edit-php .subsubsub a:before,
+.branch-3-6.edit-php .subsubsub a:before,
+.branch-3-5.edit-php .subsubsub a:before,
+.branch-3-4.edit-php .subsubsub a:before {
+	display: none;
+}
+
