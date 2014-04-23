@@ -1,8 +1,8 @@
-=== Post Status Menu Items ===
+﻿=== Post Status Menu Items ===
 Contributors: mrwweb
 Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow
 Requires at least: 3.0
-Tested up to: 3.8
+Tested up to: 3.9
 Stable tag: 1.3.1
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
