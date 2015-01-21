@@ -87,6 +87,13 @@
 .edit-php .subsubsub .trash a:before {
 	content: "\f182";
 }
+/* Support for plugins that add "archive" or "archived" status */
+#dashboard_right_now .archive-status-post-count a:before,
+.edit-php .subsubsub .archive a:before,
+#dashboard_right_now .archived-status-post-count a:before,
+.edit-php .subsubsub .archived a:before {
+	content: "\f480";
+}
 /* All */
 .edit-php .subsubsub .all a:before {
 	content: "\f180";

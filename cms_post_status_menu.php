@@ -3,7 +3,7 @@
 Plugin Name: Post Status Menu Items
 Plugin URI: http://mrwweb.com/wordpress-post-status-menu-item-plugin/
 Description: Adds post status links (e.g. "Draft (6)") to the Admin submenus.
-Version: 1.3.1
+Version: 1.3.2
 Author: Mark Root-Wiley
 Author URI: http://mrwweb.com
 Text Domain: post-status-menu-items
@@ -342,6 +342,16 @@ add_filter( 'dashboard_glance_items', 'ps_at_a_glance_widget', -10 );
 	PLUGIN SETTINGS
    ============================================ */
 
+/* Plugin Settings Link */
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ps_add_settings_link' );
+
+function ps_add_settings_link( $links ) {
+	$ps_links = array(
+		'<a href="' . admin_url( 'options-writing.php#psmi-settings' ) . '">Plugin Settings</a>',
+	);
+	return array_merge( $links, $ps_links );
+}
+
 /**
  * adds setting section, adds and registers all settings fields, sets posts to show by default 
  */
@@ -349,7 +359,10 @@ function ps_settings_api_init() {
 	// Add the section to writing settings so we can add our fields to it
 	add_settings_section(
 		'ps_setting_section',
-		__( 'Post Status Menu Items Plugin Settings', 'post-status-menu-items' ),
+		sprintf( _x( '%1$sPost Status Menu Items Plugin Settings%2$s', 'plugin settings heading, wrapped in span with ID for settings link', 'post-status-menu-items' ),
+			'<span id="psmi-settings">',
+			'</span>'
+		),
 		'ps_setting_section_callback_function',
 		'writing'
 	);
