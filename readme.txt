@@ -1,14 +1,14 @@
 === Post Status Menu Items ===
 Contributors: mrwweb
-Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow
+Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow, workflow, archived post status
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 1.3.1
+Tested up to: 4.1
+Stable tag: 1.3.2
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds post status links–e.g. "Draft" (7)–to post type admin menus.
+Adds post status links–e.g. "Draft" (7)–to post type admin menus and a few other nice goodies.
 
 == Description ==
 
@@ -22,17 +22,16 @@ Options give control over which post statuses are displayed and in which menus t
 
 Screenshots of all features and settings are available on [the Screenshots page](http://wordpress.org/plugins/post-status-menu-items/screenshots/).
 
-*Notes*
+**Notes**
 
 - Plugin settings available on **Settings > Writing**.
 - Statuses with 0 posts are never displayed.
 - Posts are the only post type for which the post status menu items are enabled by default.
 
-This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/) or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
+This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/), [Archived Post Status](https://wordpress.org/plugins/archived-post-status/), or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
 
 
-
-= Other Plugins by MRWweb =
+= Other Plugins by [MRWweb](http://mrwweb.com) =
 
 * [Feature a Page Widget](http://wordpress.org/plugins/feature-a-page-widget/) - Shows a summary of any Page in any sidebar.
 * [Advanced Custom Fields Repeater & Flexible Content Fields Collapser](http://wordpress.org/plugins/advanced-custom-field-repeater-collapser/) - Easier sorting for large repeated fields in the Advanced Custom Fields plugin.
@@ -41,6 +40,13 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 
 1. Upload the "post-status-menu-items" folder to the `/wp-content/plugins/` directory of your WordPress site.
 1. Activate the plugin, "Post Status Menu Items" through the "Plugins" menu in WordPress
+
+**OR**
+
+1. From the Dashboard, go to Plugins > Add New.
+1. Search for "Post Status Menu Items."
+1. Click "Install."
+1. Click "Activate."
 
 == Frequently Asked Questions ==
 
@@ -65,6 +71,12 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 6. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
 
 == Changelog ==
+= 1.3.2 (January 21, 2015) =
+* [New] Settings link on Plugins screen
+* [New] Define icon for post statuses named "archive" and "archived."
+* [Change] Readme tweaks to Installation and front page.
+* [i18n] Update POT file for settings link.
+
 = 1.3.1 (February 13, 2014) =
 * [Fix] Broken Trashicon Dashicon.
 * [Fix] Add additional capability check to avoid Pages showing for Contributors. Thanks @csigncsign for reporting this.
@@ -124,6 +136,9 @@ Added Post statuses to "Right Now" dashboard widget.
 * First release.
 
 == Upgrade Notice ==
+= 1.3.2 =
+Link to settings added to Plugins page. Support for Archived Post Status plugin.
+
 = 1.3.1 =
 Permissions fix for Contributors. Improved icons for 3.8. Better <3.8 support.
 
