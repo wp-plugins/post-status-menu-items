@@ -31,7 +31,7 @@ Screenshots of all features and settings are available on [the Screenshots page]
 This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/), [Archived Post Status](https://wordpress.org/plugins/archived-post-status/), or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
 
 
-= Other Plugins by [MRWweb](http://mrwweb.com) =
+= Other Plugins by MRWweb =
 
 * [Feature a Page Widget](http://wordpress.org/plugins/feature-a-page-widget/) - Shows a summary of any Page in any sidebar.
 * [Advanced Custom Fields Repeater & Flexible Content Fields Collapser](http://wordpress.org/plugins/advanced-custom-field-repeater-collapser/) - Easier sorting for large repeated fields in the Advanced Custom Fields plugin.
