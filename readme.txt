@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow, workflow, archived post status
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -75,6 +75,7 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 * [New] Settings link on Plugins screen
 * [New] Define icon for post statuses named "archive" and "archived."
 * [Change] Readme tweaks to Installation and front page.
+* [i18n] Update POT file for settings link.
 
 = 1.3.1 (February 13, 2014) =
 * [Fix] Broken Trashicon Dashicon.
