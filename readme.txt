@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: post status, post statuses, admin menu, admin, administration, cms, scheduled, draft, content management, edit flow, workflow, archived post status
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Donate Link: http://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=522061398
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ Screenshots of all features and settings are available on [the Screenshots page]
 This plugin works with custom statuses created by [Edit Flow](http://wordpress.org/extend/plugins/edit-flow/), [Archived Post Status](https://wordpress.org/plugins/archived-post-status/), or [`register_post_status()`](http://codex.wordpress.org/register_post_status).
 
 
-= Other Plugins by [MRWweb](http://mrwweb.com) =
+= Other Plugins by MRWweb =
 
 * [Feature a Page Widget](http://wordpress.org/plugins/feature-a-page-widget/) - Shows a summary of any Page in any sidebar.
 * [Advanced Custom Fields Repeater & Flexible Content Fields Collapser](http://wordpress.org/plugins/advanced-custom-field-repeater-collapser/) - Easier sorting for large repeated fields in the Advanced Custom Fields plugin.
@@ -71,6 +71,10 @@ This plugin works with custom statuses created by [Edit Flow](http://wordpress.o
 6. Plugin options on Settings > Writing (specific post types and post statuses vary by site).
 
 == Changelog ==
+= 1.3.3 (February 26, 2015) =
+* Fixed "Undefined Index" error (Thanks, [@leac](https://wordpress.org/support/profile/leac)!)
+* Update code formatting to always use braces for `if` statements.
+
 = 1.3.2 (January 21, 2015) =
 * [New] Settings link on Plugins screen
 * [New] Define icon for post statuses named "archive" and "archived."
@@ -136,6 +140,9 @@ Added Post statuses to "Right Now" dashboard widget.
 * First release.
 
 == Upgrade Notice ==
+= 1.3.3 =
+Fix a notice in some circumstances.
+
 = 1.3.2 =
 Link to settings added to Plugins page. Support for Archived Post Status plugin.
 
